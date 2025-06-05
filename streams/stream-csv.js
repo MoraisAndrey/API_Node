@@ -6,13 +6,10 @@ const csvPath = new URL('./tasks.csv', import.meta.url);
 const stream = fs.createReadStream(csvPath);
 
 const csvParse = parse({
-  delimiter: '/t',
+  delimiter: '\t',
   skipEmptyLines: true,
   fromLine: 2
 });
-
-async function run() {
-  console.log('Iniciando leitura do CSV...');
 
   async function run() {
     const linesParse = stream.pipe(csvParse);
@@ -33,9 +30,6 @@ async function run() {
       
     }
   }
-
-}
-
 run()
 function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
